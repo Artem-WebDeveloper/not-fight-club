@@ -14,20 +14,22 @@ body {
   box-sizing: border-box;
   font-size: 2rem;
   line-height: 120%;
+  background-color: rgb(144, 255, 218);
 }
 
 .container {
   max-width: 144rem;
-  background-color: aqua;
   margin: 0 auto;
 }
 
 .header {
-  border-bottom: 0.2rem solid #212020;
+  border-bottom: 0.5rem solid rgb(255, 180, 144);
+  box-shadow: 0rem 0.1rem 4rem rgba(0, 0, 0, 0.3);
+  font-size: 2.5rem;
 }
 
 .tool-bar {
-  padding: 4rem 5rem;
+  padding: 3rem 4rem;
   display: flex;
   justify-content: space-between;
   align-items: baseline;

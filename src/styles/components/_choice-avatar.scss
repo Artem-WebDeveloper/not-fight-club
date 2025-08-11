@@ -1,0 +1,70 @@
+@use '../mixins.scss' as mixin;
+
+.popup-choice-avatar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+
+  &--hidden {
+    @include mixin.hidden;
+    transform: translateX(-100%);
+  }
+}
+
+.avatars-modal {
+  position: relative;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.4);
+  padding: 5rem 5rem;
+  background: #90ffb4;
+  display: flex;
+  // flex-wrap: wrap;
+  gap: 3rem;
+
+  & svg {
+    width: 3.5rem;
+    height: 3.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 0.3rem;
+    right: 0.6rem;
+    @include mixin.transition;
+
+    &:hover {
+      backdrop-filter: brightness(0.6);
+    }
+  }
+
+  &__img {
+    @include mixin.transition;
+    cursor: pointer;
+    display: block;
+    max-width: 30rem;
+    background-color: #ff90b4;
+    box-shadow: 0 0 0 3px #28283c, 3px 3px 0 3px #28283c, -3px 3px 0 3px #28283c,
+      3px -3px 0 3px #28283c, -3px -3px 0 3px #28283c;
+
+    &:hover {
+      background: #cd6b8a;
+    }
+
+    & img {
+      width: 100%;
+      @include mixin.transition;
+      &:hover {
+        transform: scale(1.04);
+      }
+    }
+  }
+}

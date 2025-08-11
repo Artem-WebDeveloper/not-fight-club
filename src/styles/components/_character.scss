@@ -1,0 +1,64 @@
+@use '../mixins.scss' as mixin;
+
+.character-information {
+  display: flex;
+  gap: 4rem;
+
+  &__avatar {
+    position: relative;
+    @include mixin.transition;
+    max-width: 40rem;
+    cursor: pointer;
+    // background: #49d3a5;
+    background: #90ffb4;
+    box-shadow: 0 0 0 4px #28283c, 4px 4px 0 4px #28283c, -4px 4px 0 4px #28283c,
+      4px -4px 0 4px #28283c, -4px -4px 0 4px #28283c,
+      10px 10px 30px rgba(0, 0, 0, 0.375);
+
+    & svg {
+      width: 5rem;
+      height: 5rem;
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      opacity: 0;
+      @include mixin.transition;
+      transform: translateX(60%);
+    }
+
+    &:hover {
+      background: rgb(124, 220, 154);
+
+      svg {
+        opacity: 1;
+        transform: translateX(0%);
+      }
+    }
+
+    & img {
+      width: 100%;
+      @include mixin.transition;
+      &:hover {
+        transform: scale(1.04);
+      }
+    }
+  }
+
+  &__info {
+    & p {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.win-info {
+  margin-right: 1rem;
+}
+
+.lose-info--count {
+  color: #d4280a;
+}
+.win-info--count {
+  color: #03a410;
+}
