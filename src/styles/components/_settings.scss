@@ -1,0 +1,15 @@
+@use './mixins.scss' as mixin;
+
+.settings-page {
+  font-size: 3rem;
+  padding-top: 4rem;
+
+  &--hidden {
+    @include mixin.hidden;
+  }
+}
+
+.change-name-box {
+  display: flex;
+  gap: 3rem;
+}

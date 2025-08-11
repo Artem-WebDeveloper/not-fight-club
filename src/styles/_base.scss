@@ -1,0 +1,39 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  font-size: 2rem;
+  line-height: 120%;
+}
+
+.container {
+  max-width: 144rem;
+  background-color: aqua;
+  margin: 0 auto;
+}
+
+.header {
+  border-bottom: 0.2rem solid #212020;
+}
+
+.tool-bar {
+  padding: 4rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  &__right {
+    display: flex;
+    gap: 2rem;
+  }
+}
