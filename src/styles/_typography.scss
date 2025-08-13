@@ -5,5 +5,28 @@ body {
   line-height: 120%;
   font-family: 'Silkscreen', sans-serif;
   font-weight: 400;
-  color: #28283c;
+  color: var(--color-grey-dark-1);
+}
+
+/* ACCENTS */
+
+.accent-amount {
+  background-color: rgba(255, 255, 255, 0.747);
+  box-shadow: 0rem 0.1rem 4rem rgba(0, 0, 0, 0.15);
+  width: 1.8rem;
+  text-align: center;
+  display: inline-block;
+  font-size: 2.2rem;
+}
+
+.accent-attack {
+  color: var(--color-attack);
+  background-color: rgba(255, 255, 255, 0.407);
+  box-shadow: 0rem 0.1rem 4rem rgba(0, 0, 0, 0.15);
+}
+
+.accent-defence {
+  color: var(--color-defence);
+  background-color: rgba(255, 255, 255, 0.407);
+  box-shadow: 0rem 0.1rem 4rem rgba(0, 0, 0, 0.15);
 }

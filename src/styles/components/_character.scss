@@ -1,5 +1,14 @@
 @use '../mixins.scss' as mixin;
 
+.character-page {
+  display: block;
+  padding-top: 4rem;
+
+  &--hidden {
+    display: none;
+  }
+}
+
 .character-information {
   display: flex;
   gap: 4rem;
@@ -10,7 +19,7 @@
     max-width: 40rem;
     cursor: pointer;
     // background: #49d3a5;
-    background: #90ffb4;
+    background: var(--color-primary-light);
     box-shadow: 0 0 0 4px #28283c, 4px 4px 0 4px #28283c, -4px 4px 0 4px #28283c,
       4px -4px 0 4px #28283c, -4px -4px 0 4px #28283c,
       10px 10px 30px rgba(0, 0, 0, 0.375);

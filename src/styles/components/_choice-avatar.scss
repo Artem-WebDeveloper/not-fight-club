@@ -26,19 +26,19 @@
 .avatars-modal {
   position: relative;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.4);
-  padding: 5rem 5rem;
-  background: #90ffb4;
+  padding: 7rem 5rem;
+  background: var(--color-primary-light);
   display: flex;
   // flex-wrap: wrap;
   gap: 3rem;
 
-  & svg {
+  &__svg-close {
     width: 3.5rem;
     height: 3.5rem;
     cursor: pointer;
     position: absolute;
-    top: 0.3rem;
-    right: 0.6rem;
+    top: 0.6rem;
+    right: 0.8rem;
     @include mixin.transition;
 
     &:hover {
@@ -47,11 +47,12 @@
   }
 
   &__img {
+    position: relative;
     @include mixin.transition;
     cursor: pointer;
     display: block;
     max-width: 30rem;
-    background-color: #ff90b4;
+    background-color: var(--color-accent-pink);
     box-shadow: 0 0 0 3px #28283c, 3px 3px 0 3px #28283c, -3px 3px 0 3px #28283c,
       3px -3px 0 3px #28283c, -3px -3px 0 3px #28283c;
 
@@ -66,5 +67,28 @@
         transform: scale(1.04);
       }
     }
+  }
+
+  &__svg {
+    @include mixin.hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5.5rem;
+    height: 5.5rem;
+    transform: translateX(2rem);
+    transition: transform 0.4s, opacity 0.4s;
+  }
+
+  &__img:hover &__svg {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  &__img--active &__svg {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
   }
 }

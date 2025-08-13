@@ -1,0 +1,51 @@
+.nav {
+  &__list {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+  &__btn {
+    padding: 0.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+  }
+
+  &__btn::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 0.4rem;
+    width: 100%;
+    background-color: var(--color-accent-primary);
+    transform: scaleY(0);
+    // transform-origin: bottom;
+    transition: transform 0.2s, height 0.3s cubic-bezier(1, 0, 0, 1) 0.2s,
+      background-color 0.1s;
+  }
+
+  &__btn:hover::before,
+  &__btn--active::before {
+    transform: scaleY(1);
+    height: 100%;
+  }
+  &__btn:active::before {
+    background-color: #ff8e5a;
+  }
+
+  &__btn:hover &__icon,
+  &__btn--active &__icon {
+    transform: scale(1.17);
+  }
+
+  &__icon {
+    position: relative;
+    z-index: 10;
+    fill: #000;
+    width: 3.25rem;
+    height: 3.25rem;
+    transition: transform 0.2s;
+  }
+}

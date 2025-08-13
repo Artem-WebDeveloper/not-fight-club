@@ -1,0 +1,153 @@
+.battle-container {
+  margin-top: 3rem;
+}
+.battle-panel {
+  display: flex;
+  justify-content: space-between;
+}
+
+.entity {
+  background-color: var(--color-primary-light);
+  &__name {
+  }
+  &__img {
+    max-width: 26rem;
+
+    & img {
+      width: 100%;
+    }
+  }
+  &__health-bar-container {
+  }
+  &__health-bar {
+  }
+  &__health-bar-label {
+  }
+}
+
+.battle-controls {
+  .control-hero {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    &__decorate-img {
+      position: absolute;
+      max-width: 8rem;
+      z-index: -1;
+
+      &--sword {
+        top: 0.1rem;
+        left: -6.7rem;
+      }
+      &--shield {
+        top: -0.1rem;
+        right: -8rem;
+      }
+    }
+
+    &__human-maket {
+      // background-color: antiquewhite;
+      height: 25rem;
+    }
+
+    .attack-zone-box {
+      position: relative;
+
+      & p {
+        text-align: center;
+        color: #820b0b;
+      }
+    }
+
+    .defence-zone-box {
+      position: relative;
+
+      & p {
+        text-align: center;
+        color: #0b3582;
+      }
+    }
+
+    .radio-box {
+      position: absolute;
+
+      left: 0;
+      width: 16.2rem;
+      display: flex;
+      justify-content: space-between;
+      background-color: rgba(255, 255, 255, 0.407);
+      box-shadow: 0rem 0.1rem 4rem rgba(0, 0, 0, 0.15);
+      padding: 0.06rem 0.3rem;
+      cursor: pointer;
+      color: var(--color-attack);
+
+      & label {
+        width: 100%;
+        cursor: pointer;
+      }
+
+      & input {
+        width: 2rem;
+        cursor: pointer;
+      }
+
+      &:has(input[data-bodyPart='head']) {
+        top: 4.9rem;
+      }
+      &:has(input[data-bodyPart='neck']) {
+        top: 7.7rem;
+      }
+      &:has(input[data-bodyPart='body']) {
+        top: 11.5rem;
+      }
+      &:has(input[data-bodyPart='belly']) {
+        top: 15.5rem;
+      }
+      &:has(input[data-bodyPart='legs']) {
+        bottom: 4.5rem;
+      }
+    }
+
+    .check-box {
+      position: absolute;
+
+      right: 0;
+      width: 16.2rem;
+      display: flex;
+      justify-content: space-between;
+      background-color: rgba(255, 255, 255, 0.407);
+      padding: 0.06rem 0.3rem;
+      padding-left: 0.34rem;
+      cursor: pointer;
+      color: var(--color-defence);
+      box-shadow: 0rem 0.1rem 4rem rgba(0, 0, 0, 0.15);
+
+      & label {
+        text-align: end;
+        width: 100%;
+        cursor: pointer;
+      }
+
+      & input {
+        width: 2rem;
+        cursor: pointer;
+      }
+
+      &:has(input[data-bodyPart='head']) {
+        top: 4.9rem;
+      }
+      &:has(input[data-bodyPart='neck']) {
+        top: 7.7rem;
+      }
+      &:has(input[data-bodyPart='body']) {
+        top: 11.5rem;
+      }
+      &:has(input[data-bodyPart='belly']) {
+        top: 15.5rem;
+      }
+      &:has(input[data-bodyPart='legs']) {
+        bottom: 4.5rem;
+      }
+    }
+  }
+}

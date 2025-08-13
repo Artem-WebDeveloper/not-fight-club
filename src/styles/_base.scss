@@ -1,3 +1,17 @@
+:root {
+  --color-primary: #90ffda;
+  --color-primary-light: #90ffb4;
+
+  --color-accent-primary: #ffb490;
+  --color-accent-pink: #ff90b4;
+
+  --color-grey-dark-1: #28283c;
+  --color-grey-light-1: #ebebeb;
+
+  --color-defence: #0b3582;
+  --color-attack: #820b0b;
+}
+
 *,
 *::after,
 *::before {
@@ -14,7 +28,7 @@ body {
   box-sizing: border-box;
   font-size: 2rem;
   line-height: 120%;
-  background-color: rgb(144, 255, 218);
+  background-color: var(--color-primary);
 }
 
 .container {
@@ -23,7 +37,7 @@ body {
 }
 
 .header {
-  border-bottom: 0.5rem solid rgb(255, 180, 144);
+  border-bottom: 0.5rem solid var(--color-accent-primary);
   box-shadow: 0rem 0.1rem 4rem rgba(0, 0, 0, 0.3);
   font-size: 2.5rem;
 }
@@ -32,10 +46,18 @@ body {
   padding: 3rem 4rem;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
 
-  &__right {
+  /* &__right {
     display: flex;
     gap: 2rem;
-  }
+  } */
+}
+
+.divider {
+  margin-top: 10px;
+  width: 100vw;
+  height: 0.15rem;
+  background: var(--color-grey-dark-1);
+  margin-left: calc(-50vw + 50%);
 }

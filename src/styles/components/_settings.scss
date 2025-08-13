@@ -3,9 +3,10 @@
 .settings-page {
   font-size: 3rem;
   padding-top: 4rem;
+  display: block;
 
   &--hidden {
-    @include mixin.hidden;
+    display: none;
   }
 }
 
