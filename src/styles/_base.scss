@@ -7,6 +7,7 @@
 
   --color-grey-dark-1: #28283c;
   --color-grey-light-1: #ebebeb;
+  --color-darkest: #141414;
 
   --color-defence: #0b3582;
   --color-attack: #820b0b;
@@ -29,10 +30,13 @@ body {
   font-size: 2rem;
   line-height: 120%;
   background-color: var(--color-primary);
+
+  overflow: hidden;
 }
 
 .container {
-  max-width: 144rem;
+  padding: 0 2rem;
+  max-width: 148rem;
   margin: 0 auto;
 }
 

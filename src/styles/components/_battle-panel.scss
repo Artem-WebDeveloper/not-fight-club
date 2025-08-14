@@ -1,32 +1,80 @@
 .battle-container {
-  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  max-height: 100vh;
 }
 .battle-panel {
+  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
 }
 
 .entity {
-  background-color: var(--color-primary-light);
   &__name {
+    margin-bottom: 1.05rem;
+    &--right {
+      text-align: end;
+    }
   }
   &__img {
     max-width: 26rem;
 
     & img {
       width: 100%;
+
+      background: linear-gradient(
+        317deg,
+        rgb(29, 246, 242) 0%,
+        rgb(228, 228, 228) 100%
+      );
+
+      box-shadow: 0 0 0 2px #28283c, 2px 2px 0 2px #28283c,
+        -2px 2px 0 2px #28283c, 2px -2px 0 2px #28283c, -2px -2px 0 2px #28283c,
+        0 5px 14px rgba(0, 0, 0, 0.275);
+    }
+    margin-bottom: 1.2rem;
+
+    &--enemy {
+      & img {
+        background: linear-gradient(
+          53deg,
+          rgba(212, 78, 121, 1) 0%,
+          rgba(242, 242, 242, 1) 100%
+        );
+      }
     }
   }
-  &__health-bar-container {
-  }
+
   &__health-bar {
+    width: 100%;
+    appearance: none;
+    margin-bottom: 1rem;
+
+    &::-webkit-progress-bar {
+      background-color: #eee;
+      // border: 1px solid var(--color-darkest);
+      // box-shadow: 0.1rem 1rem 3rem rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 0 2px #28283c, 2px 2px 0 2px #28283c,
+        -2px 2px 0 2px #28283c, 2px -2px 0 2px #28283c, -2px -2px 0 2px #28283c,
+        2px 5px 20px rgba(0, 0, 0, 0.475);
+    }
+
+    &::-webkit-progress-value {
+      background-color: var(--color-attack);
+      // border-radius: 10px;
+    }
   }
   &__health-bar-label {
+    text-align: center;
   }
 }
 
 .battle-controls {
   .control-hero {
+    position: relative;
     display: flex;
     justify-content: space-between;
     margin-top: 3rem;
@@ -34,6 +82,7 @@
       position: absolute;
       max-width: 8rem;
       z-index: -1;
+      user-select: none;
 
       &--sword {
         top: 0.1rem;
@@ -80,6 +129,7 @@
       padding: 0.06rem 0.3rem;
       cursor: pointer;
       color: var(--color-attack);
+      user-select: none;
 
       & label {
         width: 100%;
@@ -121,6 +171,7 @@
       cursor: pointer;
       color: var(--color-defence);
       box-shadow: 0rem 0.1rem 4rem rgba(0, 0, 0, 0.15);
+      user-select: none;
 
       & label {
         text-align: end;
@@ -150,4 +201,63 @@
       }
     }
   }
+}
+
+.attack-btn {
+  position: absolute;
+  bottom: 0;
+  left: 22.8rem;
+  background: linear-gradient(
+    to top,
+    #560b0b 0%,
+    #560b0b 25%,
+    #841616 25%,
+    #841616 100%
+  );
+  // background-size: 100% 100%;
+  color: white;
+  font-family: inherit;
+  font-size: 1.6rem;
+  padding: 1.2rem 2.4rem;
+  border: 3px solid var(--color-darkest);
+
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.1s, box-shadow 0.1s;
+  animation: pulse 2.5s infinite;
+}
+
+.attack-btn:hover {
+  background-color: #ff5555;
+}
+
+.attack-btn:active {
+  transform: scale(0.98);
+  animation: none;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: none;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0rem 0.1rem 4rem rgba(0, 0, 0, 0.25);
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+/* LOGS PANEL */
+
+.logs-panel {
+  padding: 1rem 0;
+  overflow-y: auto;
+
+  flex-grow: 1;
+  // min-height: 0;
 }
