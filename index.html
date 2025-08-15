@@ -64,6 +64,7 @@
               <p class="entity__name"><span class="current-name">Name</span></p>
               <div class="entity__img">
                 <img
+                  class="current-avatar"
                   src="public/images/avatars/avatar-1.png"
                   alt="Hero Avatar" />
               </div>
@@ -223,13 +224,13 @@
         <!-- BATTLE END -->
 
         <!-- SETTINGS PAGE -->
-        <div class="settings-page settings-page">
+        <div class="settings-page settings-page--hidden">
           <div class="change-name-box">
             <span>Player Name</span>:
             <span class="current-name current-name--settings">Name</span>
             <input class="change-name-input" type="text" name="" id="" />
             <button class="btn btn-edit">< Edit</button>
-            <button class="btn btn-edit--ok">ok</button>
+            <button disabled class="btn btn-edit--ok">ok</button>
           </div>
         </div>
         <!-- SETTINGS PAGE END -->
@@ -246,7 +247,10 @@
                   d="M18 2h-2v2h2V2zM4 4h6v2H4v14h14v-6h2v8H2V4h2zm4 8H6v6h6v-2h2v-2h-2v2H8v-4zm4-2h-2v2H8v-2h2V8h2V6h2v2h-2v2zm2-6h2v2h-2V4zm4 0h2v2h2v2h-2v2h-2v2h-2v-2h2V8h2V6h-2V4zm-4 8h2v2h-2v-2z"
                   fill="currentColor" />
               </svg>
-              <img src="public/images/avatars/avatar-1.png" alt="avatar-hero" />
+              <img
+                class="current-avatar"
+                src="public/images/avatars/avatar-1.png"
+                alt="avatar-hero" />
             </div>
             <div class="character-information__info">
               <p class="current-name">Name</p>
@@ -265,13 +269,17 @@
       </div>
     </main>
     <!-- REGISTER START -->
-    <div class="register-page register-page--hidden">
+    <div class="register-page register-page">
       <h2>Create Your Character</h2>
       <label for="name-character">
         <p>Character Name</p>
-        <input type="text" name="name-character" id="name-character" />
+        <input
+          type="text"
+          name="name-character"
+          id="name-character"
+          placeholder="Enter Name" />
       </label>
-      <button class="btn">Create Character ></button>
+      <button disabled class="btn submit-name">Create Character ></button>
     </div>
     <!-- REGISTER END -->
 
@@ -287,7 +295,7 @@
             d="M5 5h2v2H5V5zm4 4H7V7h2v2zm2 2H9V9h2v2zm2 0h-2v2H9v2H7v2H5v2h2v-2h2v-2h2v-2h2v2h2v2h2v2h2v-2h-2v-2h-2v-2h-2v-2zm2-2v2h-2V9h2zm2-2v2h-2V7h2zm0 0V5h2v2h-2z"
             fill="currentColor" />
         </svg>
-        <div class="avatars-modal__img avatars-modal__img--active">
+        <div class="avatars-modal__img">
           <svg
             class="avatars-modal__svg"
             fill="none"
@@ -309,7 +317,7 @@
               d="M18 6h2v2h-2V6zm-2 4V8h2v2h-2zm-2 2v-2h2v2h-2zm-2 2h2v-2h-2v2zm-2 2h2v-2h-2v2zm-2 0v2h2v-2H8zm-2-2h2v2H6v-2zm0 0H4v-2h2v2z"
               fill="currentColor" />
           </svg>
-          <img src="public/images/avatars/avatar-1.png" alt="avatar" />
+          <img src="public/images/avatars/shrek.png" alt="avatar" />
         </div>
         <div class="avatars-modal__img">
           <svg

@@ -9,6 +9,14 @@
   background-color: #eeeeee;
   color: rgb(40, 40, 60);
 
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    box-shadow: none;
+    transform: none;
+    background-color: #d3d3d3;
+  }
+
   &:hover {
     transform: translateY(-0.1rem);
     background-color: #d8d8d8;
