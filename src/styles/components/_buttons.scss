@@ -14,9 +14,53 @@
     background-color: #d8d8d8;
   }
 
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.304);
+  }
+
   &-edit {
     font-size: 2rem;
     padding: 0.5rem 1.5rem;
     border: 0.2rem solid rgb(40, 40, 60);
+
+    &--ok {
+      display: none;
+      margin-left: -0.7rem;
+      font-size: 2rem;
+      padding: 0.5rem 1.5rem;
+      border: 0.2rem solid rgb(40, 40, 60);
+    }
+  }
+
+  &-start {
+    background: linear-gradient(
+      1deg,
+      rgb(255, 144, 179) 0%,
+      rgba(255, 180, 144, 1) 85%
+    );
+    animation: blinking 2s infinite;
+    width: 25rem;
+
+    &:hover {
+      transform: translateY(-0.08rem);
+      box-shadow: 0.1rem 0.3rem 2rem rgba(0, 0, 0, 0.504);
+    }
+    &:active {
+      transform: scale(0.98);
+      box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.304);
+    }
+  }
+}
+
+@keyframes blinking {
+  0% {
+    border: 0.2rem solid transparent;
+  }
+  50% {
+    border: 0.2rem solid #fff;
+  }
+  100% {
+    border: 0.2rem solid transparent;
   }
 }

@@ -13,4 +13,26 @@
 .change-name-box {
   display: flex;
   gap: 3rem;
+  align-items: center;
+}
+
+.change-name-input {
+  display: none;
+  width: 36rem;
+  font-size: inherit;
+  font-family: inherit;
+  border: none;
+  padding: 0 1rem;
+  background-color: var(--color-grey-light-1);
+  box-shadow: 0rem 1rem 1rem rgba(0, 0, 0, 0.1);
+  animation: extension 0.5s;
+}
+
+@keyframes extension {
+  from {
+    width: 0;
+  }
+  to {
+    width: 36rem;
+  }
 }

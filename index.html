@@ -18,14 +18,14 @@
             <nav class="nav">
               <ul class="nav__list">
                 <li class="nav__item">
-                  <button class="nav__btn nav__btn--active">
+                  <button class="nav__btn nav__btn--active" id="btn-home">
                     <svg class="nav__icon">
                       <use xlink:href="public/svg/sprites.svg#home"></use>
                     </svg>
                   </button>
                 </li>
                 <li class="nav__item">
-                  <button class="nav__btn">
+                  <button class="nav__btn" id="btn-character">
                     <svg class="nav__icon">
                       <use xlink:href="public/svg/sprites.svg#user"></use>
                     </svg>
@@ -33,7 +33,7 @@
                 </li>
 
                 <li class="nav__item">
-                  <button class="nav__btn">
+                  <button class="nav__btn" id="btn-settings">
                     <svg class="nav__icon">
                       <use xlink:href="public/svg/sprites.svg#edit"></use>
                     </svg>
@@ -48,8 +48,17 @@
 
     <main class="main">
       <div class="container">
-        <div class="battle-container">
-          <!-- BATTLE -->
+        <!-- MAIN PAGE -->
+        <div class="home-page home-page--hidden">
+          <h1 class="heading-title">NOT the Fight Club</h1>
+          <p>Game</p>
+
+          <button class="btn btn-start">START</button>
+        </div>
+        <!-- MAIN PAGE END -->
+
+        <!-- BATTLE -->
+        <div class="battle-container battle-container--hidden">
           <div class="battle-panel">
             <div class="entity">
               <p class="entity__name"><span class="current-name">Name</span></p>
@@ -214,10 +223,13 @@
         <!-- BATTLE END -->
 
         <!-- SETTINGS PAGE -->
-        <div class="settings-page settings-page--hidden">
+        <div class="settings-page settings-page">
           <div class="change-name-box">
-            <span>Player Name</span>: <span class="current-name">Name</span>
+            <span>Player Name</span>:
+            <span class="current-name current-name--settings">Name</span>
+            <input class="change-name-input" type="text" name="" id="" />
             <button class="btn btn-edit">< Edit</button>
+            <button class="btn btn-edit--ok">ok</button>
           </div>
         </div>
         <!-- SETTINGS PAGE END -->

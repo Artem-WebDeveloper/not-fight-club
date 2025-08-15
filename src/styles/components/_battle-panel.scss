@@ -5,6 +5,10 @@
   padding-bottom: 3rem;
 
   max-height: 100vh;
+
+  &--hidden {
+    display: none;
+  }
 }
 .battle-panel {
   flex-shrink: 0;
