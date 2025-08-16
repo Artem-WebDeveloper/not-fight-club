@@ -70,12 +70,17 @@
               </div>
               <div class="entity__health-bar-container">
                 <progress
-                  class="entity__health-bar"
+                  class="entity__health-bar entity__health-bar--player"
                   value="150"
                   max="150"
                   min="0"></progress>
 
-                <p class="entity__health-bar-label">150/150</p>
+                <p class="entity__health-bar-label">
+                  <span class="max-player-heath">150</span>/<span
+                    class="current-player-heath"
+                    >150</span
+                  >
+                </p>
               </div>
             </div>
 
@@ -203,17 +208,23 @@
               </p>
               <div class="entity__img entity__img--enemy">
                 <img
-                  src="public/images/avatars/avatar-1.png"
+                  class="current-enemy-avatar"
+                  src="public/images/enemies/worm.png"
                   alt="Hero Avatar" />
               </div>
               <div class="entity__health-bar-container">
                 <progress
-                  class="entity__health-bar"
+                  class="entity__health-bar entity__health-bar--enemy"
                   value="150"
                   max="150"
                   min="0"></progress>
 
-                <p class="entity__health-bar-label">150/150</p>
+                <p class="entity__health-bar-label">
+                  <span class="max-enemy-heath">150</span>/<span
+                    class="current-enemy-heath"
+                    >150</span
+                  >
+                </p>
               </div>
             </div>
           </div>

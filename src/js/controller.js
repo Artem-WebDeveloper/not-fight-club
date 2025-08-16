@@ -1,5 +1,5 @@
 import ViewPages from './view/ViewPages';
-
+import ViewBattle from './view/ViewBattle';
 import { model } from './model';
 
 class App {
@@ -33,6 +33,15 @@ class App {
 
       if (model.state.avatarPlayer)
         ViewPages.renderAvatarPlayer(model.state.avatarPlayer);
+
+      ViewBattle.renderEnemyAvatar(model.enemies[0].avatarEnemy);
+      ViewBattle.renderEnemyName(model.enemies[0].nameEnemy);
+
+      model.setPlayerHealth(model.state.healthPlayer);
+      ViewBattle.updatePlayerHealth();
+
+      model.setEnemyHealth(model.enemies[0].healthEnemy);
+      ViewBattle.updateEnemyHealth();
     });
 
     /* --------------------------------------------------*/
