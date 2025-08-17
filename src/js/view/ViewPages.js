@@ -28,6 +28,13 @@ class ViewPages {
     current.classList.add('avatars-modal__img--active');
   }
 
+  renderStatistic(state) {
+    const winsEl = document.querySelector('.win-info--count');
+    const losesEl = document.querySelector('.lose-info--count');
+    winsEl.textContent = state.wins;
+    losesEl.textContent = state.loses;
+  }
+
   openSettings(button) {
     this._resetSettingsUI();
 
@@ -57,8 +64,7 @@ class ViewPages {
   }
 
   openHome(button) {
-    const menuBtns = document.querySelectorAll('.nav__btn');
-    menuBtns.forEach(btn => btn.classList.remove('nav__btn--active'));
+    this.hideActiveMenuBtns();
 
     button.classList.add('nav__btn--active');
 
@@ -68,6 +74,11 @@ class ViewPages {
 
     this._pageTitleEl.textContent = 'Main';
     this._homePage.classList.remove('home-page--hidden');
+  }
+
+  hideActiveMenuBtns() {
+    const menuBtns = document.querySelectorAll('.nav__btn');
+    menuBtns.forEach(btn => btn.classList.remove('nav__btn--active'));
   }
 
   closeRegistration() {

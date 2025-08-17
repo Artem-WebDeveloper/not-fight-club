@@ -13,6 +13,9 @@ class App {
   _btnChangeNamePlayer = document.querySelector('.btn-edit--ok');
   _btnCloseAvatarPopup = document.querySelector('.avatars-modal__svg-close');
 
+  _btnAttack = document.querySelector('.attack-btn');
+  _btnFinish = document.querySelector('.btn-end');
+
   _characterBoxAvatar = document.querySelector(
     '.character-information__avatar'
   );
@@ -25,7 +28,9 @@ class App {
     /* -------------LOADDOM------------------------ */
 
     window.addEventListener('load', () => {
+      // localStorage.clear();
       model.recoverState();
+
       if (model.state.namePlayer) {
         ViewPages.closeRegistration();
         ViewPages.renderNamePlayer(model.state.namePlayer);
@@ -45,6 +50,36 @@ class App {
     });
 
     /* --------------------------------------------------*/
+
+    /* --------------BATTLE FIGHT------------------ */
+    this._btnAttack.addEventListener('click', () => {
+      model.playerAttacks();
+      model.enemyAttacks(model.enemies[0]);
+      ViewBattle.updateEnemyHealth();
+      ViewBattle.updatePlayerHealth();
+      model.checkHealthBars();
+
+      if (model.checkWinner()) {
+        ViewBattle.displayModalGameEnd(model.checkWinner());
+        model.updateStatistic(model.checkWinner());
+        ViewPages.renderStatistic(model.state);
+      }
+    });
+
+    this._btnFinish.addEventListener('click', () => {
+      ViewBattle.hideModalGameEnd();
+      ViewPages.openCharacters(this._btnCharacter);
+
+      ViewBattle.renderEnemyAvatar(model.enemies[0].avatarEnemy);
+      ViewBattle.renderEnemyName(model.enemies[0].nameEnemy);
+
+      model.setPlayerHealth(model.state.healthPlayer);
+      ViewBattle.updatePlayerHealth();
+
+      model.setEnemyHealth(model.enemies[0].healthEnemy);
+      ViewBattle.updateEnemyHealth();
+    });
+    /* ------------------------------------- */
 
     /* -------------REGISTRATION------------------------ */
     this._btnSubmitNamePlayer.addEventListener('click', e => {
@@ -129,10 +164,10 @@ class App {
       ViewPages.openHome(e.currentTarget)
     );
 
-    this._btnStart.addEventListener(
-      'click',
-      ViewPages.displayBattle.bind(ViewPages)
-    );
+    this._btnStart.addEventListener('click', () => {
+      ViewPages.displayBattle();
+      ViewPages.hideActiveMenuBtns();
+    });
     /* ------------------------------------- */
   }
 }
