@@ -231,6 +231,19 @@
   letter-spacing: 1px;
   transition: transform 0.1s, box-shadow 0.1s;
   animation: pulse 2.5s infinite;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    box-shadow: none;
+    transform: none;
+    background-color: #d3d3d3;
+    animation: none;
+
+    &:active {
+      transform: scale(1);
+    }
+  }
 }
 
 .attack-btn:hover {

@@ -21,11 +21,20 @@ class App {
   );
   _avatarImages = document.querySelectorAll('.avatars-modal__img');
 
+  _radioAttack = document.querySelectorAll('input[name="body-part-attack"]');
+  _checkboxesDefences = document.querySelectorAll(
+    'input[name="body-part-defence"]'
+  );
+
   _inputRegistrationEl = document.querySelector('#name-character');
   _inputSettingsEl = document.querySelector('.change-name-input');
 
+  _enemy;
+
   constructor() {
     /* -------------LOADDOM------------------------ */
+
+    this._enemy = model.getRandomEnemy();
 
     window.addEventListener('load', () => {
       // localStorage.clear();
@@ -39,7 +48,7 @@ class App {
       if (model.state.avatarPlayer)
         ViewPages.renderAvatarPlayer(model.state.avatarPlayer);
 
-      ViewBattle.renderEnemyAvatar(model.enemies[0].avatarEnemy);
+      /*  ViewBattle.renderEnemyAvatar(model.enemies[0].avatarEnemy);
       ViewBattle.renderEnemyName(model.enemies[0].nameEnemy);
 
       model.setPlayerHealth(model.state.healthPlayer);
@@ -47,14 +56,43 @@ class App {
 
       model.setEnemyHealth(model.enemies[0].healthEnemy);
       ViewBattle.updateEnemyHealth();
+    }); */
+
+      this._initFight();
     });
 
     /* --------------------------------------------------*/
 
     /* --------------BATTLE FIGHT------------------ */
+
+    [...this._checkboxesDefences, ...this._radioAttack].forEach(input => {
+      input.addEventListener('change', () => {
+        const checkedAttack = document.querySelectorAll(
+          'input[name="body-part-attack"]:checked'
+        );
+        const checkedDefences = document.querySelectorAll(
+          'input[name="body-part-defence"]:checked'
+        );
+        model.checkValidatePicks(
+          checkedAttack,
+          checkedDefences,
+          this._btnAttack
+        );
+      });
+    });
+
     this._btnAttack.addEventListener('click', () => {
-      model.playerAttacks();
-      model.enemyAttacks(model.enemies[0]);
+      model.getPicksPlayer();
+      model.getPicksEnemy(this._enemy.attacks, this._enemy.defences);
+
+      model.calculateDamage(
+        model.state,
+        this._enemy,
+        model.state.playerAttack,
+        model.currentEnemyState.defenceZones
+      );
+      // model.playerAttacks();
+      // model.enemyAttacks(this._enemy);
       ViewBattle.updateEnemyHealth();
       ViewBattle.updatePlayerHealth();
       model.checkHealthBars();
@@ -69,15 +107,8 @@ class App {
     this._btnFinish.addEventListener('click', () => {
       ViewBattle.hideModalGameEnd();
       ViewPages.openCharacters(this._btnCharacter);
-
-      ViewBattle.renderEnemyAvatar(model.enemies[0].avatarEnemy);
-      ViewBattle.renderEnemyName(model.enemies[0].nameEnemy);
-
-      model.setPlayerHealth(model.state.healthPlayer);
-      ViewBattle.updatePlayerHealth();
-
-      model.setEnemyHealth(model.enemies[0].healthEnemy);
-      ViewBattle.updateEnemyHealth();
+      this._enemy = model.getRandomEnemy();
+      this._initFight();
     });
     /* ------------------------------------- */
 
@@ -169,6 +200,17 @@ class App {
       ViewPages.hideActiveMenuBtns();
     });
     /* ------------------------------------- */
+  }
+
+  _initFight() {
+    ViewBattle.renderEnemyAvatar(this._enemy.avatarEnemy);
+    ViewBattle.renderEnemyName(this._enemy.nameEnemy);
+
+    model.setPlayerHealth(model.state.healthPlayer);
+    ViewBattle.updatePlayerHealth();
+
+    model.setEnemyHealth(this._enemy.health);
+    ViewBattle.updateEnemyHealth();
   }
 }
 
