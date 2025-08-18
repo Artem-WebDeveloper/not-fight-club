@@ -34,11 +34,14 @@ class App {
   constructor() {
     /* -------------LOADDOM------------------------ */
 
-    this._enemy = model.getRandomEnemy();
+    // this._enemy = model.getRandomEnemy();
 
     window.addEventListener('load', () => {
       // localStorage.clear();
       model.recoverState();
+      this._enemy = model._enemy;
+
+      ViewPages.renderStatistic(model.state);
 
       if (model.state.namePlayer) {
         ViewPages.closeRegistration();
@@ -47,16 +50,6 @@ class App {
 
       if (model.state.avatarPlayer)
         ViewPages.renderAvatarPlayer(model.state.avatarPlayer);
-
-      /*  ViewBattle.renderEnemyAvatar(model.enemies[0].avatarEnemy);
-      ViewBattle.renderEnemyName(model.enemies[0].nameEnemy);
-
-      model.setPlayerHealth(model.state.healthPlayer);
-      ViewBattle.updatePlayerHealth();
-
-      model.setEnemyHealth(model.enemies[0].healthEnemy);
-      ViewBattle.updateEnemyHealth();
-    }); */
 
       this._initFight();
     });
@@ -85,22 +78,34 @@ class App {
       model.getPicksPlayer();
       model.getPicksEnemy(this._enemy.attacks, this._enemy.defences);
 
-      model.calculateDamage(
+      const dmgFromPlayer = model.calculateDamage(
         model.state,
         this._enemy,
         model.state.playerAttack,
         model.currentEnemyState.defenceZones
       );
-      // model.playerAttacks();
-      // model.enemyAttacks(this._enemy);
-      ViewBattle.updateEnemyHealth();
-      ViewBattle.updatePlayerHealth();
-      model.checkHealthBars();
+      console.log(dmgFromPlayer);
 
+      const dmgFromEnemy = model.calculateDamage(
+        this._enemy,
+        model.state,
+        model.currentEnemyState.attackZones,
+        model.state.playerDefences
+      );
+      console.log(dmgFromEnemy);
+
+      model.updateCurrentHealthsBars(model.state.health, this._enemy.health);
+      ViewBattle.updatePlayerHealth();
+      ViewBattle.updateEnemyHealth();
+
+      model.saveGame(this._enemy);
+
+      model.checkHealthBars();
       if (model.checkWinner()) {
         ViewBattle.displayModalGameEnd(model.checkWinner());
         model.updateStatistic(model.checkWinner());
         ViewPages.renderStatistic(model.state);
+        return;
       }
     });
 
@@ -108,6 +113,8 @@ class App {
       ViewBattle.hideModalGameEnd();
       ViewPages.openCharacters(this._btnCharacter);
       this._enemy = model.getRandomEnemy();
+      model.initHealths();
+      localStorage.setItem('state', JSON.stringify(model.state));
       this._initFight();
     });
     /* ------------------------------------- */
@@ -206,10 +213,10 @@ class App {
     ViewBattle.renderEnemyAvatar(this._enemy.avatarEnemy);
     ViewBattle.renderEnemyName(this._enemy.nameEnemy);
 
-    model.setPlayerHealth(model.state.healthPlayer);
+    model.setPlayerHealth(model.state.health, model.state.initHealth);
     ViewBattle.updatePlayerHealth();
 
-    model.setEnemyHealth(this._enemy.health);
+    model.setEnemyHealth(this._enemy.health, this._enemy.initHealth);
     ViewBattle.updateEnemyHealth();
   }
 }

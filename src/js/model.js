@@ -2,8 +2,9 @@ class Model {
   state = {
     namePlayer: '',
     avatarPlayer: '',
-    healthPlayer: 150,
-    damagePlayer: 10,
+    health: 150,
+    initHealth: 150,
+    damage: 10,
     isWonPlayer: false,
     isWonEnemy: false,
     wins: 0,
@@ -20,6 +21,7 @@ class Model {
     nameEnemy: 'Succub',
     avatarEnemy: 'public/images/enemies/succubus.png',
     health: 140,
+    initHealth: 140,
     damage: 10,
     attacks: 2,
     defences: 1,
@@ -29,6 +31,7 @@ class Model {
     nameEnemy: 'Worm',
     avatarEnemy: 'public/images/enemies/worm.png',
     health: 150,
+    initHealth: 150,
     damage: 10,
     attacks: 1,
     defences: 3,
@@ -45,7 +48,12 @@ class Model {
     this._proggresHpEnemyEl = document.querySelector(
       '.entity__health-bar--enemy'
     );
-    console.log(this.getPicksEnemy());
+    // console.log(this.getPicksEnemy());
+  }
+
+  initHealths() {
+    this.enemies.forEach(enemy => (enemy.health = enemy.initHealth));
+    this.state.health = this.state.initHealth;
   }
 
   saveNamePlayer(input) {
@@ -73,7 +81,7 @@ class Model {
       'input[name="body-part-defence"]:checked'
     );
 
-    this.state.playerAttack = checkedAttack.dataset.bodypart;
+    this.state.playerAttack = [checkedAttack.dataset.bodypart];
     this.state.playerDefences = Array.from(checkedDefences).map(
       el => el.dataset.bodypart
     );
@@ -109,13 +117,30 @@ class Model {
       const zone = getRandomZone(this.currentEnemyState.defenceZones);
       this.currentEnemyState.defenceZones.push(zone);
     }
-    console.log(this.currentEnemyState);
+    // console.log(this.currentEnemyState);
+  }
+
+  saveGame(enemy) {
+    localStorage.setItem('state', JSON.stringify(this.state));
+    localStorage.setItem('enemyHealth', enemy.health);
+    localStorage.setItem('enemyIndex', this.enemies.indexOf(enemy));
   }
 
   recoverState() {
     const stateLocale = JSON.parse(localStorage.getItem('state'));
-    if (!stateLocale) return;
-    Object.assign(this.state, stateLocale);
+    if (stateLocale) {
+      Object.assign(this.state, stateLocale);
+    }
+
+    const enemyIndex = localStorage.getItem('enemyIndex');
+    if (enemyIndex !== null && this.enemies[enemyIndex]) {
+      this._enemy = this.enemies[enemyIndex];
+    } else {
+      this._enemy = this.getRandomEnemy();
+    }
+
+    const enemyHealth = localStorage.getItem('enemyHealth');
+    if (enemyHealth && this._enemy) this._enemy.health = +enemyHealth;
 
     console.log('this', this.state);
   }
@@ -123,20 +148,25 @@ class Model {
   getAvatar(avatar) {
     this.state['avatarPlayer'] = avatar.getAttribute('src');
     localStorage.setItem('state', JSON.stringify(this.state));
-    console.log(this.state);
+    // console.log(this.state);
   }
 
-  setEnemyHealth(hp) {
-    this._proggresHpEnemyEl.max = hp;
+  setEnemyHealth(hp, hpMax) {
+    this._proggresHpEnemyEl.max = hpMax;
     this._proggresHpEnemyEl.value = hp;
   }
 
-  setPlayerHealth(hp) {
-    this._proggresHpPlayerEl.max = hp;
+  setPlayerHealth(hp, hpMax) {
+    this._proggresHpPlayerEl.max = hpMax;
     this._proggresHpPlayerEl.value = hp;
   }
 
-  playerAttacks() {
+  updateCurrentHealthsBars(playerHp, enemyHp) {
+    this._proggresHpPlayerEl.value = playerHp;
+    this._proggresHpEnemyEl.value = enemyHp;
+  }
+
+  /*  playerAttacks() {
     this._proggresHpEnemyEl.value =
       +this._proggresHpEnemyEl.value - this.state.damagePlayer;
   }
@@ -144,6 +174,14 @@ class Model {
   enemyAttacks(enemy) {
     this._proggresHpPlayerEl.value =
       +this._proggresHpPlayerEl.value - enemy.damage;
+  } */
+
+  playerAttacks(damage) {
+    this._proggresHpEnemyEl.value = +this._proggresHpEnemyEl.value - damage;
+  }
+
+  enemyAttacks(damage) {
+    this._proggresHpPlayerEl.value = +this._proggresHpPlayerEl.value - damage;
   }
 
   checkHealthBars() {
@@ -198,8 +236,9 @@ class Model {
     }
   }
 
-  calculateDamage(attacker, target, attackZone, targetDefences) {
-    let damage = attacker.damage;
+  calculateDamage(attacker, target, attackZones, targetDefences) {
+    /* let damage = attacker.damage;
+    console.log(damage);
     const isCrit = Math.random() < attacker.critChance;
 
     const blocked = targetDefences.includes(attackZone);
@@ -211,10 +250,33 @@ class Model {
       if (blocked) damage = 0;
     }
     console.log(targetDefences);
-    // target.health -= damage;
-    this._proggresHpEnemyEl.value = +this._proggresHpEnemyEl.value - +damage;
+    console.log(damage);
 
-    return { damage, isCrit, blocked, zone: attackZone };
+    target.health -= damage;
+
+    return { damage, isCrit, blocked, zone: attackZone }; */
+
+    // attackZones теперь может быть как строкой, так и массивом
+    const zones = Array.isArray(attackZones) ? attackZones : [attackZones];
+    let totalDamage = 0;
+    const results = [];
+
+    for (const zone of zones) {
+      let damage = attacker.damage;
+      const isCrit = Math.random() < attacker.critChance;
+      const blocked = targetDefences.includes(zone);
+
+      if (isCrit && !blocked) damage = Math.floor(damage * 1.5);
+      else if (!isCrit && blocked) damage = 0;
+
+      results.push({ damage, isCrit, blocked, zone });
+      totalDamage += damage;
+    }
+
+    // Обновляем здоровье один раз после всех ударов
+    target.health -= totalDamage;
+
+    return { totalDamage, results };
   }
 }
 
