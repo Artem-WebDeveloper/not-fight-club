@@ -12,7 +12,16 @@ class Model {
     logs: [],
     playerAttack: '',
     playerDefences: '',
-    critChance: 0.2,
+    critChance: 0.4,
+    isPlayer: true,
+
+    get name() {
+      return this.namePlayer;
+    },
+
+    set name(value) {
+      this.namePlayer = value;
+    },
   };
 
   currentEnemyState = {};
@@ -26,6 +35,15 @@ class Model {
     attacks: 2,
     defences: 1,
     critChance: 0.2,
+    isPlayer: false,
+
+    get name() {
+      return this.nameEnemy;
+    },
+
+    set name(value) {
+      this.nameEnemy = value;
+    },
   };
   enemyWorm = {
     nameEnemy: 'Worm',
@@ -36,6 +54,15 @@ class Model {
     attacks: 1,
     defences: 3,
     critChance: 0.1,
+    isPlayer: false,
+
+    get name() {
+      return this.nameEnemy;
+    },
+
+    set name(value) {
+      this.nameEnemy = value;
+    },
   };
 
   enemies = [this.enemyWorm, this.enemySuccub];
@@ -57,7 +84,15 @@ class Model {
   }
 
   saveNamePlayer(input) {
-    this.state['namePlayer'] = input.value.trim();
+    const secureHTML = str =>
+      str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+
+    this.state['namePlayer'] = secureHTML(input.value.trim());
     localStorage.setItem('state', JSON.stringify(this.state));
   }
 
@@ -85,7 +120,7 @@ class Model {
     this.state.playerDefences = Array.from(checkedDefences).map(
       el => el.dataset.bodypart
     );
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   /* getPicksEnemy(numAttacks, numDefs) {
@@ -121,12 +156,16 @@ class Model {
   }
 
   saveGame(enemy) {
+    const logsPanelEl = document.querySelector('.logs-panel');
+
     localStorage.setItem('state', JSON.stringify(this.state));
     localStorage.setItem('enemyHealth', enemy.health);
     localStorage.setItem('enemyIndex', this.enemies.indexOf(enemy));
+    localStorage.setItem('logsOfFight', logsPanelEl.innerHTML);
   }
 
   recoverState() {
+    const logsPanelEl = document.querySelector('.logs-panel');
     const stateLocale = JSON.parse(localStorage.getItem('state'));
     if (stateLocale) {
       Object.assign(this.state, stateLocale);
@@ -141,6 +180,9 @@ class Model {
 
     const enemyHealth = localStorage.getItem('enemyHealth');
     if (enemyHealth && this._enemy) this._enemy.health = +enemyHealth;
+
+    const logsOfFight = localStorage.getItem('logsOfFight');
+    if (logsOfFight) logsPanelEl.innerHTML = logsOfFight;
 
     console.log('this', this.state);
   }
@@ -237,26 +279,6 @@ class Model {
   }
 
   calculateDamage(attacker, target, attackZones, targetDefences) {
-    /* let damage = attacker.damage;
-    console.log(damage);
-    const isCrit = Math.random() < attacker.critChance;
-
-    const blocked = targetDefences.includes(attackZone);
-
-    if (isCrit) {
-      if (!blocked) damage = Math.floor(damage * 1.5);
-      else damage = damage;
-    } else {
-      if (blocked) damage = 0;
-    }
-    console.log(targetDefences);
-    console.log(damage);
-
-    target.health -= damage;
-
-    return { damage, isCrit, blocked, zone: attackZone }; */
-
-    // attackZones теперь может быть как строкой, так и массивом
     const zones = Array.isArray(attackZones) ? attackZones : [attackZones];
     let totalDamage = 0;
     const results = [];
@@ -269,11 +291,24 @@ class Model {
       if (isCrit && !blocked) damage = Math.floor(damage * 1.5);
       else if (!isCrit && blocked) damage = 0;
 
-      results.push({ damage, isCrit, blocked, zone });
+      const attackerName = attacker.name;
+      const targetName = target.name;
+      const attackerType = attacker.isPlayer ? 'player' : 'enemy';
+      const targetType = target.isPlayer ? 'player' : 'enemy';
+
+      results.push({
+        attackerName,
+        attackerType,
+        targetName,
+        targetType,
+        damage,
+        isCrit,
+        blocked,
+        zone,
+      });
       totalDamage += damage;
     }
 
-    // Обновляем здоровье один раз после всех ударов
     target.health -= totalDamage;
 
     return { totalDamage, results };

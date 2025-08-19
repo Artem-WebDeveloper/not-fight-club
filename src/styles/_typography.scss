@@ -36,3 +36,154 @@ body {
   background-color: rgba(255, 255, 255, 0.407);
   box-shadow: 0rem 0.1rem 4rem rgba(0, 0, 0, 0.15);
 }
+
+.color-red {
+  color: var(--color-attack);
+}
+.color-blue {
+  color: var(--color-defence);
+}
+.color-peach-stroke {
+  font-size: 2.4rem;
+  color: var(--color-accent-primary);
+}
+
+.color-red {
+  color: var(--color-attack);
+}
+.color-blue {
+  color: var(--color-defence);
+}
+
+.shake {
+  display: inline-block;
+  animation: shake 0.3s infinite;
+}
+
+.damage-shake {
+  display: inline-block;
+  animation: damageShake 0.6s infinite;
+}
+
+.damage-pulse {
+  display: inline-block;
+  animation: pulse 1.8s infinite;
+}
+.damage-flash {
+  display: inline-block;
+  animation: flash 0.4s infinite;
+}
+
+.scan-line {
+  position: relative;
+  border: 2px solid #ff9800;
+  overflow: hidden;
+}
+
+.scan-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, #fff, transparent);
+  animation: scan 1.5s linear infinite;
+}
+
+.glow-border {
+  position: relative;
+  border: 2px solid #ff9800;
+  padding: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  transform: rotate(0deg);
+  animation: border-glow 2s linear infinite;
+}
+
+@keyframes border-glow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  20% {
+    transform: translate(-1px, 1px) rotate(-1deg);
+  }
+  40% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  60% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  80% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+}
+
+@keyframes damageShake {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  25% {
+    transform: translate(1px, -1px);
+  }
+  50% {
+    transform: translate(-1px, 1px);
+  }
+  75% {
+    transform: translate(1px, 1px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes flash {
+  0%,
+  100% {
+    color: #f44336;
+  }
+  50% {
+    color: #ff7961;
+  }
+}
+
+@keyframes scan {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}

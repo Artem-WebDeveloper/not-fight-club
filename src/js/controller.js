@@ -74,7 +74,7 @@ class App {
       });
     });
 
-    this._btnAttack.addEventListener('click', () => {
+    this._btnAttack.addEventListener('click', async () => {
       model.getPicksPlayer();
       model.getPicksEnemy(this._enemy.attacks, this._enemy.defences);
 
@@ -84,7 +84,8 @@ class App {
         model.state.playerAttack,
         model.currentEnemyState.defenceZones
       );
-      console.log(dmgFromPlayer);
+      // console.log(dmgFromPlayer);
+      await ViewBattle.displaylogs(dmgFromPlayer);
 
       const dmgFromEnemy = model.calculateDamage(
         this._enemy,
@@ -92,21 +93,23 @@ class App {
         model.currentEnemyState.attackZones,
         model.state.playerDefences
       );
-      console.log(dmgFromEnemy);
+      await ViewBattle.displaylogs(dmgFromEnemy);
+      // console.log(dmgFromEnemy);
+      // ViewBattle.displaylogs(dmgFromEnemy);
 
       model.updateCurrentHealthsBars(model.state.health, this._enemy.health);
       ViewBattle.updatePlayerHealth();
       ViewBattle.updateEnemyHealth();
 
-      model.saveGame(this._enemy);
-
       model.checkHealthBars();
       if (model.checkWinner()) {
+        this._btnAttack.disabled = true;
         ViewBattle.displayModalGameEnd(model.checkWinner());
         model.updateStatistic(model.checkWinner());
         ViewPages.renderStatistic(model.state);
         return;
       }
+      model.saveGame(this._enemy);
     });
 
     this._btnFinish.addEventListener('click', () => {
@@ -116,6 +119,8 @@ class App {
       model.initHealths();
       localStorage.setItem('state', JSON.stringify(model.state));
       this._initFight();
+      this._btnAttack.disabled = false;
+      ViewBattle.clearLogs();
     });
     /* ------------------------------------- */
 
