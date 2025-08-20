@@ -111,9 +111,13 @@ dealing <span class="accent-attack">${damage}</span> <span class="color-red">dam
         result;
 
       const attackerClass =
-        result.attackerType === 'player' ? 'accent-defence' : 'accent-attack';
+        result.attackerType === 'player'
+          ? 'color-player-text'
+          : 'color-enemy-text';
       const targetClass =
-        result.targetType === 'player' ? 'accent-defence' : 'accent-attack';
+        result.targetType === 'player'
+          ? 'color-player-text'
+          : 'color-enemy-text';
       const logEntry =
         result.attackerType === 'player'
           ? 'player-attack-log'
@@ -121,18 +125,18 @@ dealing <span class="accent-attack">${damage}</span> <span class="color-red">dam
 
       log.classList.add(logEntry);
 
-      let markup = `<span class="damage-pulse ${attackerClass}">${attackerName}</span> attacked <span class="damage-pulse ${targetClass}">${targetName}</span> to <span class="accent-defence">${zone}</span> and ${
+      let markup = `<span class="damage-pulse ${attackerClass}">${attackerName}</span> attacked <span class="damage-pulse ${targetClass}">${targetName}</span> to <span class="highlight-text">${zone}</span> and ${
         isCrit && !blocked
           ? '<span class="color-peach-stroke damage-flash">CRIT</span>'
           : 'dealt'
       } <span class="accent-attack shake">${damage}</span> <span class="color-red damage-shake">damage</span>`;
 
       if (blocked && !isCrit) {
-        markup = `<span class="${attackerClass} damage-pulse">${attackerName}</span> attacked <span class="${targetClass} damage-pulse">${targetName}</span> to <span class="accent-defence">${zone}</span> but <span class="${targetClass} damage-pulse">${targetName}</span> was able to protect his <span class="accent-defence">${zone}</span>`;
+        markup = `<span class="${attackerClass} damage-pulse">${attackerName}</span> attacked <span class="${targetClass} damage-pulse">${targetName}</span> to <span class="highlight-text">${zone}</span> but <span class="${targetClass} damage-pulse">${targetName}</span> was able to protect his <span class="highlight-text">${zone}</span>`;
       }
 
       if (blocked && isCrit) {
-        markup = `<span class="${attackerClass} damage-pulse">${attackerName}</span> attacked <span class="${targetClass} damage-pulse">${targetName}'s</span> <span class="accent-defence">${zone}</span>. 
+        markup = `<span class="${attackerClass} damage-pulse">${attackerName}</span> attacked <span class="${targetClass} damage-pulse">${targetName}'s</span> <span class="highlight-text">${zone}</span>. 
 <span class="damage-pulse ${targetClass}">${targetName}</span> tried to block, but <span class="damage-pulse ${attackerClass}">${attackerName}</span> <span class="color-peach-stroke damage-flash">crit</span> through the block, 
 dealing <span class="accent-attack shake">${damage}</span> <span class="color-red damage-shake">damage!</span>`;
       }
@@ -141,11 +145,11 @@ dealing <span class="accent-attack shake">${damage}</span> <span class="color-re
       // logsEl.appendChild(log);
       logsEl.insertAdjacentElement('afterbegin', log);
 
-      // await this._typeHTML(log, markup, 1);
+      await this._typeHTML(log, markup, 6, 8);
 
       // logsEl.scrollTop = logsEl.scrollHeight;
       document.insertAdjacent;
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await new Promise(resolve => setTimeout(resolve, 20));
     }
   }
 
@@ -154,15 +158,17 @@ dealing <span class="accent-attack shake">${damage}</span> <span class="color-re
     logsEl.innerHTML = '';
   }
 
-  async _typeHTML(element, html, delay = 50) {
+  async _typeHTML(element, html, blockSize = 4, delay = 10) {
     element.innerHTML = '';
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = html;
 
     const appendNode = async (parent, node) => {
       if (node.nodeType === Node.TEXT_NODE) {
-        for (const char of node.textContent) {
-          parent.append(char);
+        let i = 0;
+        while (i < node.textContent.length) {
+          parent.append(node.textContent.slice(i, i + blockSize));
+          i += blockSize;
           await new Promise(r => setTimeout(r, delay));
         }
       } else if (node.nodeType === Node.ELEMENT_NODE) {
@@ -171,13 +177,13 @@ dealing <span class="accent-attack shake">${damage}</span> <span class="color-re
           el.setAttribute(attr.name, attr.value);
         }
         parent.appendChild(el);
-        for (const child of node.childNodes) {
+        for (const child of Array.from(node.childNodes)) {
           await appendNode(el, child);
         }
       }
     };
 
-    for (const node of tempDiv.childNodes) {
+    for (const node of Array.from(tempDiv.childNodes)) {
       await appendNode(element, node);
     }
   }

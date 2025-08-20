@@ -75,6 +75,9 @@ class App {
     });
 
     this._btnAttack.addEventListener('click', async () => {
+      if (this._btnAttack.disabled) return;
+      this._btnAttack.disabled = true;
+
       model.getPicksPlayer();
       model.getPicksEnemy(this._enemy.attacks, this._enemy.defences);
 
@@ -103,13 +106,13 @@ class App {
 
       model.checkHealthBars();
       if (model.checkWinner()) {
-        this._btnAttack.disabled = true;
         ViewBattle.displayModalGameEnd(model.checkWinner());
         model.updateStatistic(model.checkWinner());
         ViewPages.renderStatistic(model.state);
         return;
       }
       model.saveGame(this._enemy);
+      this._btnAttack.disabled = false;
     });
 
     this._btnFinish.addEventListener('click', () => {
@@ -119,7 +122,7 @@ class App {
       model.initHealths();
       localStorage.setItem('state', JSON.stringify(model.state));
       this._initFight();
-      this._btnAttack.disabled = false;
+
       ViewBattle.clearLogs();
     });
     /* ------------------------------------- */
@@ -223,6 +226,13 @@ class App {
 
     model.setEnemyHealth(this._enemy.health, this._enemy.initHealth);
     ViewBattle.updateEnemyHealth();
+    this._resetPicks();
+  }
+
+  _resetPicks() {
+    this._radioAttack.forEach(radio => (radio.checked = false));
+    this._checkboxesDefences.forEach(checkbox => (checkbox.checked = false));
+    this._btnAttack.disabled = true;
   }
 }
 
