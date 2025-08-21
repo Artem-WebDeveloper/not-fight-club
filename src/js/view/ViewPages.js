@@ -28,6 +28,20 @@ class ViewPages {
     current.classList.add('avatars-modal__img--active');
   }
 
+  restoreActiveAvatar(selectedAvatarSrc) {
+    const avatars = document.querySelectorAll('.avatars-modal__img');
+    avatars.forEach(avatar => {
+      const img = avatar.querySelector('img');
+      if (!img) return;
+
+      avatar.classList.remove('avatars-modal__img--active');
+
+      if (img.src.endsWith(selectedAvatarSrc)) {
+        avatar.classList.add('avatars-modal__img--active');
+      }
+    });
+  }
+
   renderStatistic(state) {
     const winsEl = document.querySelector('.win-info--count');
     const losesEl = document.querySelector('.lose-info--count');

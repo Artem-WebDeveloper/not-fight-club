@@ -48,8 +48,10 @@ class App {
         ViewPages.renderNamePlayer(model.state.namePlayer);
       }
 
-      if (model.state.avatarPlayer)
+      if (model.state.avatarPlayer) {
         ViewPages.renderAvatarPlayer(model.state.avatarPlayer);
+        ViewPages.restoreActiveAvatar(model.state.avatarPlayer);
+      }
 
       this._initFight();
     });

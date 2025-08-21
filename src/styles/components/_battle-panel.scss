@@ -299,7 +299,7 @@
         top: -0.1rem;
         left: -2.6rem;
         font-size: 2.9rem;
-        animation: arrowLog 0.3s;
+        animation: arrowLog 0.3s, opac 1s infinite;
       }
     }
   }
@@ -335,5 +335,19 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes opac {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

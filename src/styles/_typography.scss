@@ -1,9 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&family=VT323&display=swap');
 
+@font-face {
+  font-family: 'SilkscreenRus';
+  src: url('/public/fonts/SilkscreenRus.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'CyrillicUndertale';
+  src: url(/public/fonts/cyrillic-undertale-font.otf);
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-size: 2rem;
   line-height: 120%;
-  font-family: 'Silkscreen', monospace;
+  font-family: 'Silkscreen', 'SilkscreenRus', 'CyrillicUndertale', monospace;
   font-weight: 400;
   color: var(--color-grey-dark-1);
 }

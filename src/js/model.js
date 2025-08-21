@@ -12,7 +12,7 @@ class Model {
     logs: [],
     playerAttack: '',
     playerDefences: '',
-    critChance: 0.4,
+    critChance: 0.25,
     isPlayer: true,
 
     get name() {
@@ -28,10 +28,10 @@ class Model {
 
   enemySuccub = {
     nameEnemy: 'Succub',
-    avatarEnemy: 'public/images/enemies/succubus.png',
+    avatarEnemy: 'public/images/enemies/succubus.webp',
     health: 140,
     initHealth: 140,
-    damage: 10,
+    damage: 7,
     attacks: 2,
     defences: 1,
     critChance: 0.2,
@@ -53,7 +53,7 @@ class Model {
     damage: 10,
     attacks: 1,
     defences: 3,
-    critChance: 0.1,
+    critChance: 0.15,
     isPlayer: false,
 
     get name() {
@@ -207,16 +207,6 @@ class Model {
     this._proggresHpPlayerEl.value = playerHp;
     this._proggresHpEnemyEl.value = enemyHp;
   }
-
-  /*  playerAttacks() {
-    this._proggresHpEnemyEl.value =
-      +this._proggresHpEnemyEl.value - this.state.damagePlayer;
-  }
-
-  enemyAttacks(enemy) {
-    this._proggresHpPlayerEl.value =
-      +this._proggresHpPlayerEl.value - enemy.damage;
-  } */
 
   playerAttacks(damage) {
     this._proggresHpEnemyEl.value = +this._proggresHpEnemyEl.value - damage;
