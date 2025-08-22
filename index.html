@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Not-Fight-Club</title>
+
+    <script type="module" crossorigin src="/assets/index-DbgRbfCx.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CXliUJr8.css">
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="tool-bar">
+          <div class="tool-bar__left">
+            <span class="page-title">Main</span>
+          </div>
+          <div class="tool-bar__right">
+            <nav class="nav">
+              <ul class="nav__list">
+                <li class="nav__item">
+                  <button class="nav__btn nav__btn--active" id="btn-home">
+                    <svg class="nav__icon">
+                      <use xlink:href="/assets/sprites-CC0_tCiF.svg#home"></use>
+                    </svg>
+                  </button>
+                </li>
+                <li class="nav__item">
+                  <button class="nav__btn" id="btn-character">
+                    <svg class="nav__icon">
+                      <use xlink:href="/assets/sprites-CC0_tCiF.svg#user"></use>
+                    </svg>
+                  </button>
+                </li>
+
+                <li class="nav__item">
+                  <button class="nav__btn" id="btn-settings">
+                    <svg class="nav__icon">
+                      <use xlink:href="/assets/sprites-CC0_tCiF.svg#edit"></use>
+                    </svg>
+                  </button>
+                </li>
+                <li class="nav__item">
+                  <button class="nav__btn" id="btn-bestiary">
+                    <svg class="nav__icon">
+                      <use xlink:href="data:image/svg+xml,%3csvg%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3e%3cpath%20d='M6%203h14v2h2v6h-2v8h-2V5H6V3zm8%2014v-2H6V5H4v10H2v4h2v2h14v-2h-2v-2h-2zm0%200v2H4v-2h10zM8%207h8v2H8V7zm8%204H8v2h8v-2z'%20fill='currentColor'/%3e%3c/svg%3e"></use>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="container">
+        <!-- MAIN PAGE -->
+        <div class="home-page home-page--hidden">
+          <h1 class="heading-title">NOT the Fight Club</h1>
+          <p>Game</p>
+
+          <button class="btn btn-start">START</button>
+        </div>
+        <!-- MAIN PAGE END -->
+
+        <!-- BATTLE -->
+        <div class="battle-container battle-container--hidden">
+          <div class="battle-panel">
+            <div class="entity">
+              <p class="entity__name"><span class="current-name">Name</span></p>
+              <div class="entity__img">
+                <img
+                  class="current-avatar"
+                  src="/assets/elster-CGBXSV8Q.webp"
+                  alt="Hero Avatar" />
+              </div>
+              <div class="entity__health-bar-container">
+                <progress
+                  class="entity__health-bar entity__health-bar--player"
+                  value="150"
+                  max="150"
+                  min="0"></progress>
+
+                <p class="entity__health-bar-label">
+                  <span class="max-player-heath">150</span>/<span
+                    class="current-player-heath"
+                    >150</span
+                  >
+                </p>
+              </div>
+            </div>
+
+            <div class="battle-controls">
+              <p>
+                Please pick <span class="accent-amount">1</span>
+                <span class="accent-attack">Attack</span> zone and
+                <span class="accent-amount">2</span>
+                <span class="accent-defence">Defence</span> zones
+              </p>
+
+              <div class="control-hero">
+                <div class="attack-zone-box">
+                  <p>Attack Zones</p>
+
+                  <div class="radio-box">
+                    <label for="head-attack">Head </label>
+
+                    <input
+                      type="radio"
+                      name="body-part-attack"
+                      id="head-attack"
+                      data-bodyPart="head" />
+                  </div>
+                  <div class="radio-box">
+                    <label for="neck-attack">Neck</label>
+                    <input
+                      type="radio"
+                      id="neck-attack"
+                      name="body-part-attack"
+                      data-bodyPart="neck" />
+                  </div>
+                  <div class="radio-box">
+                    <label for="body-attack">Body</label>
+                    <input
+                      type="radio"
+                      id="body-attack"
+                      name="body-part-attack"
+                      data-bodyPart="body" />
+                  </div>
+                  <div class="radio-box">
+                    <label for="belly-attack">Belly</label>
+                    <input
+                      id="belly-attack"
+                      type="radio"
+                      name="body-part-attack"
+                      data-bodyPart="belly" />
+                  </div>
+                  <div class="radio-box">
+                    <label for="legs-attack">Legs</label>
+                    <input
+                      id="legs-attack"
+                      type="radio"
+                      name="body-part-attack"
+                      data-bodyPart="legs" />
+                  </div>
+                  <img
+                    class="control-hero__decorate-img control-hero__decorate-img--sword"
+                    src="/assets/sword-Bh2jJcjD.png"
+                    alt="sword" />
+
+                  <svg class="control-hero__human-maket">
+                    <use xlink:href="data:image/svg+xml,%3csvg%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3e%3cpath%20d='M10%202h4v4h-4V2zM7%207h10v2h-2v13h-2v-6h-2v6H9V9H7V7zm-2%204h2V9H5v2zm0%200v2H3v-2h2zm14%200h-2V9h2v2zm0%200h2v2h-2v-2z'%20fill='currentColor'/%3e%3c/svg%3e"></use>
+                  </svg>
+                </div>
+                <div class="defence-zone-box">
+                  <p>Defence Zones</p>
+
+                  <svg class="control-hero__human-maket">
+                    <use xlink:href="data:image/svg+xml,%3csvg%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3e%3cpath%20d='M10%202h4v4h-4V2zM7%207h10v2h-2v13h-2v-6h-2v6H9V9H7V7zm-2%204h2V9H5v2zm0%200v2H3v-2h2zm14%200h-2V9h2v2zm0%200h2v2h-2v-2z'%20fill='currentColor'/%3e%3c/svg%3e"></use>
+                  </svg>
+
+                  <div class="check-box">
+                    <input
+                      type="checkbox"
+                      name="body-part-defence"
+                      id="head-defence"
+                      data-bodyPart="head" />
+                    <label for="head-defence">Head </label>
+                  </div>
+                  <div class="check-box">
+                    <input
+                      type="checkbox"
+                      id="neck-defence"
+                      name="body-part-defence"
+                      data-bodyPart="neck" />
+                    <label for="neck-defence">Neck</label>
+                  </div>
+                  <div class="check-box">
+                    <input
+                      type="checkbox"
+                      id="body-defence"
+                      name="body-part-defence"
+                      data-bodyPart="body" />
+                    <label for="body-defence">Body</label>
+                  </div>
+                  <div class="check-box">
+                    <input
+                      id="belly-defence"
+                      type="checkbox"
+                      name="body-part-defence"
+                      data-bodyPart="belly" />
+                    <label for="belly-defence">Belly</label>
+                  </div>
+                  <div class="check-box">
+                    <input
+                      id="legs-defence"
+                      type="checkbox"
+                      name="body-part-defence"
+                      data-bodyPart="legs" />
+                    <label for="legs-defence">Legs</label>
+                  </div>
+                  <img
+                    class="control-hero__decorate-img control-hero__decorate-img--shield"
+                    src="/assets/shield-CSV5DaCJ.png"
+                    alt="shield" />
+                </div>
+                <button disabled class="attack-btn">⚔️ATTACK!</button>
+              </div>
+            </div>
+
+            <div class="entity">
+              <p class="entity__name entity__name--right">
+                <span class="enemy-name">Enemy</span>
+              </p>
+              <div class="entity__img entity__img--enemy">
+                <img
+                  class="current-enemy-avatar"
+                  src="/assets/succubus-ChK-mbcl.webp"
+                  alt="Hero Avatar" />
+              </div>
+              <div class="entity__health-bar-container">
+                <progress
+                  class="entity__health-bar entity__health-bar--enemy"
+                  value="150"
+                  max="150"
+                  min="0"></progress>
+
+                <p class="entity__health-bar-label">
+                  <span class="max-enemy-heath">150</span>/<span
+                    class="current-enemy-heath"
+                    >150</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+          <div class="logs-panel"></div>
+        </div>
+        <!-- BATTLE END -->
+
+        <!-- SETTINGS PAGE -->
+        <div class="settings-page settings-page--hidden">
+          <div class="change-name-box">
+            <span>Player Name</span>:
+            <span class="current-name current-name--settings">Name</span>
+            <input class="change-name-input" type="text" name="" id="" />
+            <button class="btn btn-edit">< Edit</button>
+            <button disabled class="btn btn-edit--ok">ok</button>
+          </div>
+        </div>
+        <!-- SETTINGS PAGE END -->
+
+        <!-- CHARACTER PAGE -->
+        <div class="character-page character-page--hidden">
+          <div class="character-information">
+            <div class="character-information__avatar">
+              <svg
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M18 2h-2v2h2V2zM4 4h6v2H4v14h14v-6h2v8H2V4h2zm4 8H6v6h6v-2h2v-2h-2v2H8v-4zm4-2h-2v2H8v-2h2V8h2V6h2v2h-2v2zm2-6h2v2h-2V4zm4 0h2v2h2v2h-2v2h-2v2h-2v-2h2V8h2V6h-2V4zm-4 8h2v2h-2v-2z"
+                  fill="currentColor" />
+              </svg>
+              <img
+                class="current-avatar"
+                src="/assets/avatar-1-Cn7sYsaT.png"
+                alt="avatar-hero" />
+            </div>
+            <div class="character-information__info">
+              <p class="current-name">Name</p>
+              <div class="statistic-info">
+                <span class="win-info"
+                  >Wins: <span class="win-info--count">0</span></span
+                >
+                <span class="lose-info"
+                  >Loses: <span class="lose-info--count">0</span></span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- CHARACTER PAGE END -->
+
+        <!-- BESTIARY PAGE -->
+        <div class="bestiary-page bestiary-page--hidden">
+          <div class="bestiary-page__content">
+            <div class="bestiary-page__enemy-card">
+              <div class="bestiary-page__enemy-header">
+                <img
+                  alt="enemy"
+                  src="/assets/succubus-ChK-mbcl.webp"
+                  class="bestiary-page__enemy-img" />
+                <p class="bestiary-page__enemy-name">Succubus</p>
+              </div>
+              <div class="bestiary-page__enemy-stats">
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Health:</span>
+                  <span class="bestiary-page__stat-value">150</span>
+                </div>
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Damage:</span>
+                  <span class="bestiary-page__stat-value">5</span>
+                </div>
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Attacks:</span>
+                  <span class="bestiary-page__stat-value">2</span>
+                </div>
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Defences:</span>
+                  <span class="bestiary-page__stat-value">1</span>
+                </div>
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Crit Chance:</span>
+                  <span class="bestiary-page__stat-value">15%</span>
+                </div>
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Archetype:</span>
+                  <span class="bestiary-page__stat-value">Aggressor</span>
+                </div>
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Strengths:</span>
+                  <span class="bestiary-page__stat-value">Strengths</span>
+                </div>
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Weaknesses:</span>
+                  <span class="bestiary-page__stat-value">Weaknesses</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- BESTIARY PAGE END -->
+      </div>
+    </main>
+    <!-- REGISTER START -->
+    <div class="register-page register-page">
+      <h2>Create Your Character</h2>
+      <label for="name-character">
+        <p>Character Name</p>
+        <input
+          type="text"
+          name="name-character"
+          id="name-character"
+          placeholder="Enter Name" />
+      </label>
+      <button disabled class="btn submit-name">Create Character ></button>
+    </div>
+    <!-- REGISTER END -->
+
+    <!-- CHOICE AVATAR POPUP -->
+    <div class="popup-choice-avatar popup-choice-avatar--hidden">
+      <div class="avatars-modal">
+        <svg
+          class="avatars-modal__svg-close"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24">
+          <path
+            d="M5 5h2v2H5V5zm4 4H7V7h2v2zm2 2H9V9h2v2zm2 0h-2v2H9v2H7v2H5v2h2v-2h2v-2h2v-2h2v2h2v2h2v2h2v-2h-2v-2h-2v-2h-2v-2zm2-2v2h-2V9h2zm2-2v2h-2V7h2zm0 0V5h2v2h-2z"
+            fill="currentColor" />
+        </svg>
+        <div class="avatars-modal__img">
+          <svg
+            class="avatars-modal__svg"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24">
+            <path
+              d="M18 6h2v2h-2V6zm-2 4V8h2v2h-2zm-2 2v-2h2v2h-2zm-2 2h2v-2h-2v2zm-2 2h2v-2h-2v2zm-2 0v2h2v-2H8zm-2-2h2v2H6v-2zm0 0H4v-2h2v2z"
+              fill="currentColor" />
+          </svg>
+          <img src="/assets/elster-CGBXSV8Q.webp" alt="avatar" />
+        </div>
+        <div class="avatars-modal__img">
+          <svg
+            class="avatars-modal__svg"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24">
+            <path
+              d="M18 6h2v2h-2V6zm-2 4V8h2v2h-2zm-2 2v-2h2v2h-2zm-2 2h2v-2h-2v2zm-2 2h2v-2h-2v2zm-2 0v2h2v-2H8zm-2-2h2v2H6v-2zm0 0H4v-2h2v2z"
+              fill="currentColor" />
+          </svg>
+          <img src="/assets/shrek-DaaZwepY.png" alt="avatar" />
+        </div>
+        <div class="avatars-modal__img">
+          <svg
+            class="avatars-modal__svg"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24">
+            <path
+              d="M18 6h2v2h-2V6zm-2 4V8h2v2h-2zm-2 2v-2h2v2h-2zm-2 2h2v-2h-2v2zm-2 2h2v-2h-2v2zm-2 0v2h2v-2H8zm-2-2h2v2H6v-2zm0 0H4v-2h2v2z"
+              fill="currentColor" />
+          </svg>
+          <img src="/assets/hornet-BIPN56UF.webp" alt="avatar" />
+        </div>
+        <div class="avatars-modal__img">
+          <svg
+            class="avatars-modal__svg"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24">
+            <path
+              d="M18 6h2v2h-2V6zm-2 4V8h2v2h-2zm-2 2v-2h2v2h-2zm-2 2h2v-2h-2v2zm-2 2h2v-2h-2v2zm-2 0v2h2v-2H8zm-2-2h2v2H6v-2zm0 0H4v-2h2v2z"
+              fill="currentColor" />
+          </svg>
+          <img src="/assets/geralt-B1tl_DK2.webp" alt="avatar" />
+        </div>
+      </div>
+    </div>
+    <!-- CHOICE AVATAR POPUP END-->
+
+    <!-- END GAME POPUP -->
+    <div class="popup-game-end popup-game-end--hidden">
+      <div class="end-game-modal">
+        <div class="end-game-modal__message">
+          <p>Congragulation!🎉</p>
+          <p>You Won!</p>
+        </div>
+        <div class="end-game-modal__btns">
+          <button class="btn btn-end">Finish Fight</button>
+        </div>
+      </div>
+    </div>
+    <!-- END GAME POPUP END-->
+
+    <!-- SPINNER LOADER -->
+    <div id="loader" class="loader">
+      <div class="spinner"></div>
+      <!-- SPINNER LOADER END-->
+    </div>
+  </body>
+</html>
