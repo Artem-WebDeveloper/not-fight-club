@@ -7,6 +7,7 @@ class App {
   _btnHome = document.querySelector('#btn-home');
   _btnSettings = document.querySelector('#btn-settings');
   _btnCharacter = document.querySelector('#btn-character');
+  _btnBestiary = document.querySelector('#btn-bestiary');
   _btnEditName = document.querySelector('.btn-edit');
 
   _btnSubmitNamePlayer = document.querySelector('.submit-name');
@@ -36,11 +37,15 @@ class App {
 
     // this._enemy = model.getRandomEnemy();
 
-    window.addEventListener('load', () => {
+    /* window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      loader.style.display = 'flex';
+
       // localStorage.clear();
       model.recoverState();
       this._enemy = model._enemy;
 
+      ViewPages.displayBestiaryEnemies(model.enemies);
       ViewPages.renderStatistic(model.state);
 
       if (model.state.namePlayer) {
@@ -54,6 +59,38 @@ class App {
       }
 
       this._initFight();
+      loader.style.display = 'none';
+    }); */
+
+    window.addEventListener('load', async () => {
+      // localStorage.clear();
+
+      const loader = document.querySelector('#loader');
+      loader.style.display = 'flex';
+
+      await new Promise(requestAnimationFrame);
+
+      await new Promise(resolve => setTimeout(resolve, 10));
+
+      model.recoverState();
+      this._enemy = model._enemy;
+
+      ViewPages.displayBestiaryEnemies(model.enemies);
+      ViewPages.renderStatistic(model.state);
+
+      if (model.state.namePlayer) {
+        ViewPages.closeRegistration();
+        ViewPages.renderNamePlayer(model.state.namePlayer);
+      }
+
+      if (model.state.avatarPlayer) {
+        ViewPages.renderAvatarPlayer(model.state.avatarPlayer);
+        ViewPages.restoreActiveAvatar(model.state.avatarPlayer);
+      }
+
+      this._initFight();
+
+      loader.style.display = 'none';
     });
 
     /* --------------------------------------------------*/
@@ -207,6 +244,9 @@ class App {
     );
     this._btnCharacter.addEventListener('click', e =>
       ViewPages.openCharacters(e.currentTarget)
+    );
+    this._btnBestiary.addEventListener('click', e =>
+      ViewPages.openBestiary(e.currentTarget)
     );
     this._btnHome.addEventListener('click', e =>
       ViewPages.openHome(e.currentTarget)

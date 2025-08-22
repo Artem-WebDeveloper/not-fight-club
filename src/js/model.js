@@ -1,7 +1,7 @@
 class Model {
   state = {
     namePlayer: '',
-    avatarPlayer: '',
+    avatarPlayer: 'public/images/avatars/elster.webp',
     health: 150,
     initHealth: 150,
     damage: 10,
@@ -27,7 +27,7 @@ class Model {
   currentEnemyState = {};
 
   enemySuccub = {
-    nameEnemy: 'Succub',
+    nameEnemy: 'Succubus',
     avatarEnemy: 'public/images/enemies/succubus.webp',
     health: 140,
     initHealth: 140,
@@ -36,6 +36,9 @@ class Model {
     defences: 1,
     critChance: 0.2,
     isPlayer: false,
+    archetype: 'Agressor',
+    strengths: 'Agile',
+    weaknesses: 'Fragile',
 
     get name() {
       return this.nameEnemy;
@@ -45,16 +48,63 @@ class Model {
       this.nameEnemy = value;
     },
   };
-  enemyWorm = {
-    nameEnemy: 'Worm',
-    avatarEnemy: 'public/images/enemies/worm.png',
+  enemyTyrant = {
+    nameEnemy: 'Mr.X',
+    avatarEnemy: 'public/images/enemies/tyrant.webp',
     health: 150,
     initHealth: 150,
     damage: 10,
     attacks: 1,
     defences: 3,
-    critChance: 0.15,
+    critChance: 0.1,
     isPlayer: false,
+    archetype: 'Tank',
+    strengths: 'High defence',
+    weaknesses: 'Slow',
+
+    get name() {
+      return this.nameEnemy;
+    },
+
+    set name(value) {
+      this.nameEnemy = value;
+    },
+  };
+  enemyDoggo = {
+    nameEnemy: 'Doggo Sif',
+    avatarEnemy: 'public/images/enemies/doggo.webp',
+    health: 130,
+    initHealth: 130,
+    damage: 5,
+    attacks: 3,
+    defences: 1,
+    critChance: 0.05,
+    isPlayer: false,
+    archetype: 'Fast Predator',
+    strengths: 'Multi attacks',
+    weaknesses: 'Weak defence, Low crit',
+
+    get name() {
+      return this.nameEnemy;
+    },
+
+    set name(value) {
+      this.nameEnemy = value;
+    },
+  };
+  enemyScorpepe = {
+    nameEnemy: 'ScorPepe',
+    avatarEnemy: 'public/images/enemies/scorpepe.webp',
+    health: 120,
+    initHealth: 120,
+    damage: 6,
+    attacks: 2,
+    defences: 2,
+    critChance: 0.3,
+    isPlayer: false,
+    archetype: 'Critical Striker',
+    strengths: 'High crit',
+    weaknesses: 'Unstable damage',
 
     get name() {
       return this.nameEnemy;
@@ -65,7 +115,12 @@ class Model {
     },
   };
 
-  enemies = [this.enemyWorm, this.enemySuccub];
+  enemies = [
+    this.enemyTyrant,
+    this.enemySuccub,
+    this.enemyDoggo,
+    this.enemyScorpepe,
+  ];
   bodyParts = ['head', 'neck', 'body', 'belly', 'legs'];
 
   constructor() {
@@ -183,8 +238,6 @@ class Model {
 
     const logsOfFight = localStorage.getItem('logsOfFight');
     if (logsOfFight) logsPanelEl.innerHTML = logsOfFight;
-
-    console.log('this', this.state);
   }
 
   getAvatar(avatar) {

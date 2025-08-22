@@ -6,6 +6,7 @@ class ViewPages {
     this._homePage = document.querySelector('.home-page');
     this._battlePage = document.querySelector('.battle-container');
     this._registrationPage = document.querySelector('.register-page');
+    this._bestiaryPage = document.querySelector('.bestiary-page');
 
     this._popupAvatars = document.querySelector('.popup-choice-avatar');
   }
@@ -59,6 +60,7 @@ class ViewPages {
     this._characterPage.classList.add('character-page--hidden');
     this._homePage.classList.add('home-page--hidden');
     this._battlePage.classList.add('battle-container--hidden');
+    this._bestiaryPage.classList.add('bestiary-page--hidden');
 
     this._pageTitleEl.textContent = 'Settings';
     this._settingsPage.classList.remove('settings-page--hidden');
@@ -72,9 +74,25 @@ class ViewPages {
     this._settingsPage.classList.add('settings-page--hidden');
     this._homePage.classList.add('home-page--hidden');
     this._battlePage.classList.add('battle-container--hidden');
+    this._bestiaryPage.classList.add('bestiary-page--hidden');
 
     this._pageTitleEl.textContent = 'Character';
     this._characterPage.classList.remove('character-page--hidden');
+  }
+
+  openBestiary(button) {
+    const menuBtns = document.querySelectorAll('.nav__btn');
+    menuBtns.forEach(btn => btn.classList.remove('nav__btn--active'));
+
+    button.classList.add('nav__btn--active');
+
+    this._settingsPage.classList.add('settings-page--hidden');
+    this._homePage.classList.add('home-page--hidden');
+    this._battlePage.classList.add('battle-container--hidden');
+    this._characterPage.classList.add('character-page--hidden');
+
+    this._pageTitleEl.textContent = 'Bestiary';
+    this._bestiaryPage.classList.remove('bestiary-page--hidden');
   }
 
   openHome(button) {
@@ -85,6 +103,7 @@ class ViewPages {
     this._settingsPage.classList.add('settings-page--hidden');
     this._characterPage.classList.add('character-page--hidden');
     this._battlePage.classList.add('battle-container--hidden');
+    this._bestiaryPage.classList.add('bestiary-page--hidden');
 
     this._pageTitleEl.textContent = 'Main';
     this._homePage.classList.remove('home-page--hidden');
@@ -131,6 +150,73 @@ class ViewPages {
   }
   closePopupAvatars() {
     this._popupAvatars.classList.add('popup-choice-avatar--hidden');
+  }
+
+  displayBestiaryEnemies(enemies) {
+    const bestiaryContent = document.querySelector('.bestiary-page__content');
+    bestiaryContent.innerHTML = '';
+
+    enemies.forEach(enemy => {
+      const markup = `<div class="bestiary-page__enemy-card">
+              <div class="bestiary-page__enemy-header">
+                <img
+                  alt="enemy"
+                  src="${enemy.avatarEnemy}"
+                  class="bestiary-page__enemy-img" />
+                <p class="bestiary-page__enemy-name">${enemy.nameEnemy}</p>
+              </div>
+
+              <div class="bestiary-page__enemy-stats">
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Health:</span>
+                  <span class="bestiary-page__stat-value">${
+                    enemy.initHealth
+                  }</span>
+                </div>
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Damage:</span>
+                  <span class="bestiary-page__stat-value">${enemy.damage}</span>
+                </div>
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Attacks:</span>
+                  <span class="bestiary-page__stat-value">${
+                    enemy.attacks
+                  }</span>
+                </div>
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Defences:</span>
+                  <span class="bestiary-page__stat-value">${
+                    enemy.defences
+                  }</span>
+                </div>
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Crit Chance:</span>
+                  <span class="bestiary-page__stat-value">${
+                    enemy.critChance * 100
+                  }%</span>
+                </div>
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Archetype:</span>
+                  <span class="bestiary-page__stat-value">${
+                    enemy.archetype
+                  }</span>
+                </div>
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Strengths:</span>
+                  <span class="bestiary-page__stat-value">${
+                    enemy.strengths
+                  }</span>
+                </div>
+                <div class="bestiary-page__stat">
+                  <span class="bestiary-page__stat-label">Weaknesses:</span>
+                  <span class="bestiary-page__stat-value">${
+                    enemy.weaknesses
+                  }</span>
+                </div>
+              </div>
+            </div>`;
+      bestiaryContent.insertAdjacentHTML('beforebegin', markup);
+    });
   }
 }
 

@@ -1,0 +1,68 @@
+.bestiary-page {
+  display: block;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  overflow-y: auto;
+  max-height: 90vh;
+
+  &--hidden {
+    display: none;
+  }
+
+  &__enemy-card {
+    display: flex;
+    gap: 4rem;
+    // background: var(--color-primary-light);
+    padding: 1rem;
+    // box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    align-items: self-start;
+    // align-items: center;
+    // justify-content: center;
+    // max-width: 95rem;
+    // border-bottom: 2px solid black;
+    margin-bottom: 1.3rem;
+  }
+
+  &__enemy-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // margin-bottom: 1.5rem;
+  }
+
+  &__enemy-name {
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  &__enemy-img {
+    margin-top: 3px;
+    padding: 0.5rem;
+    width: 14rem;
+    height: 14rem;
+    object-fit: contain;
+    box-shadow: 0 0 0 3px #28283c, 3px 3px 0 3px #28283c;
+    background-color: var(--color-accent-pink);
+  }
+
+  &__enemy-stats {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    padding: 1rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: var(--color-primary-light);
+    gap: 1.2rem 1rem;
+    width: 100%;
+  }
+
+  &__stat-label {
+    font-weight: 700;
+    text-align: right;
+    padding-right: 0.5rem;
+  }
+
+  &__stat-value {
+    text-align: left;
+  }
+}
