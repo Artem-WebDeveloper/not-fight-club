@@ -1,7 +1,7 @@
 class Model {
   state = {
     namePlayer: '',
-    avatarPlayer: 'public/images/avatars/elster.webp',
+    avatarPlayer: 'images/avatars/elster.webp',
     health: 150,
     initHealth: 150,
     damage: 10,
@@ -28,7 +28,7 @@ class Model {
 
   enemySuccub = {
     nameEnemy: 'Succubus',
-    avatarEnemy: 'public/images/enemies/succubus.webp',
+    avatarEnemy: 'images/enemies/succubus.webp',
     health: 140,
     initHealth: 140,
     damage: 7,
@@ -50,7 +50,7 @@ class Model {
   };
   enemyTyrant = {
     nameEnemy: 'Mr.X',
-    avatarEnemy: 'public/images/enemies/tyrant.webp',
+    avatarEnemy: 'images/enemies/tyrant.webp',
     health: 150,
     initHealth: 150,
     damage: 10,
@@ -72,7 +72,7 @@ class Model {
   };
   enemyDoggo = {
     nameEnemy: 'Doggo Sif',
-    avatarEnemy: 'public/images/enemies/doggo.webp',
+    avatarEnemy: 'images/enemies/doggo.webp',
     health: 130,
     initHealth: 130,
     damage: 5,
@@ -94,7 +94,7 @@ class Model {
   };
   enemyScorpepe = {
     nameEnemy: 'ScorPepe',
-    avatarEnemy: 'public/images/enemies/scorpepe.webp',
+    avatarEnemy: 'images/enemies/scorpepe.webp',
     health: 120,
     initHealth: 120,
     damage: 6,
