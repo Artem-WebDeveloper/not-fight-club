@@ -8,6 +8,41 @@
     <script defer type="module" src="src/js/main.js"></script>
   </head>
   <body>
+    <!-- HIDDEN SVG SPRITE -->
+    <svg style="display: none">
+      <symbol id="human-1" fill="none" viewBox="0 0 24 24">
+        <path
+          d="M10 2h4v4h-4V2zM7 7h10v2h-2v13h-2v-6h-2v6H9V9H7V7zm-2 4h2V9H5v2zm0 0v2H3v-2h2zm14 0h-2V9h2v2zm0 0h2v2h-2v-2z"
+          fill="currentColor" />
+      </symbol>
+      <symbol id="human-2" fill="none" viewBox="0 0 24 24">
+        <path
+          d="M10 2h4v4h-4V2zM3 7h18v2h-6v13h-2v-6h-2v6H9V9H3V7z"
+          fill="currentColor" />
+      </symbol>
+      <symbol id="scroll" fill="none" viewBox="0 0 24 24">
+        <path
+          d="M6 3h14v2h2v6h-2v8h-2V5H6V3zm8 14v-2H6V5H4v10H2v4h2v2h14v-2h-2v-2h-2zm0 0v2H4v-2h10zM8 7h8v2H8V7zm8 4H8v2h8v-2z"
+          fill="currentColor" />
+      </symbol>
+      <symbol id="user" fill="none" viewBox="0 0 24 24">
+        <path
+          d="M15 2H9v2H7v6h2V4h6V2zm0 8H9v2h6v-2zm0-6h2v6h-2V4zM4 16h2v-2h12v2H6v4h12v-4h2v6H4v-6z"
+          fill="currentColor" />
+      </symbol>
+      <symbol id="edit" fill="none" viewBox="0 0 24 24">
+        <path
+          d="M18 2h-2v2h2V2zM4 4h6v2H4v14h14v-6h2v8H2V4h2zm4 8H6v6h6v-2h2v-2h-2v2H8v-4zm4-2h-2v2H8v-2h2V8h2V6h2v2h-2v2zm2-6h2v2h-2V4zm4 0h2v2h2v2h-2v2h-2v2h-2v-2h2V8h2V6h-2V4zm-4 8h2v2h-2v-2z"
+          fill="currentColor" />
+      </symbol>
+      <symbol id="home" fill="none" viewBox="0 0 24 24">
+        <path
+          d="M14 2h-4v2H8v2H6v2H4v2H2v2h2v10h7v-6h2v6h7V12h2v-2h-2V8h-2V6h-2V4h-2V2zm0 2v2h2v2h2v2h2v2h-2v8h-3v-6H9v6H6v-8H4v-2h2V8h2V6h2V4h4z"
+          fill="currentColor" />
+      </symbol>
+    </svg>
+    <!-- HIDDEN SVG SPRITE END -->
+
     <header class="header">
       <div class="container">
         <div class="tool-bar">
@@ -20,14 +55,14 @@
                 <li class="nav__item">
                   <button class="nav__btn nav__btn--active" id="btn-home">
                     <svg class="nav__icon">
-                      <use xlink:href="svg/sprites.svg#home"></use>
+                      <use href="#home"></use>
                     </svg>
                   </button>
                 </li>
                 <li class="nav__item">
                   <button class="nav__btn" id="btn-character">
                     <svg class="nav__icon">
-                      <use xlink:href="svg/sprites.svg#user"></use>
+                      <use href="#user"></use>
                     </svg>
                   </button>
                 </li>
@@ -35,14 +70,14 @@
                 <li class="nav__item">
                   <button class="nav__btn" id="btn-settings">
                     <svg class="nav__icon">
-                      <use xlink:href="svg/sprites.svg#edit"></use>
+                      <use href="#edit"></use>
                     </svg>
                   </button>
                 </li>
                 <li class="nav__item">
                   <button class="nav__btn" id="btn-bestiary">
                     <svg class="nav__icon">
-                      <use xlink:href="svg/scroll.svg"></use>
+                      <use href="#scroll"></use>
                     </svg>
                   </button>
                 </li>
@@ -150,14 +185,14 @@
                     alt="sword" />
 
                   <svg class="control-hero__human-maket">
-                    <use xlink:href="svg/human-1.svg"></use>
+                    <use href="#human-1"></use>
                   </svg>
                 </div>
                 <div class="defence-zone-box">
                   <p>Defence Zones</p>
 
                   <svg class="control-hero__human-maket">
-                    <use xlink:href="svg/human-1.svg"></use>
+                    <use href="#human-1"></use>
                   </svg>
 
                   <div class="check-box">
