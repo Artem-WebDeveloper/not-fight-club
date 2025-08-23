@@ -26,6 +26,21 @@
   &__img {
     width: 26rem;
     height: 26rem;
+
+    @media (max-width: 75em) {
+      width: 18rem;
+      height: 18rem;
+    }
+
+    @media (max-width: 56.25em) {
+      width: 16rem;
+      height: 16rem;
+    }
+
+    @media (max-width: 37.5em) {
+      width: 14rem;
+      height: 14rem;
+    }
     & img {
       padding: 1rem;
       width: 100%;
@@ -83,6 +98,15 @@
     position: relative;
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 56.25em) {
+      flex-direction: column;
+    }
+
+    @media (max-width: 37.5em) {
+      flex-direction: column;
+    }
+
     margin-top: 3rem;
     &__decorate-img {
       position: absolute;
@@ -233,22 +257,21 @@
   transition: transform 0.1s, box-shadow 0.1s;
   animation: pulse 2.5s infinite;
 
-  &:disabled {
+  &:disabled,
+  &:disabled:hover {
     cursor: not-allowed;
     opacity: 0.5;
     box-shadow: none;
     transform: none;
     background-color: #d3d3d3;
     animation: none;
-
-    &:active {
-      transform: scale(1);
-    }
   }
 }
 
 .attack-btn:hover {
-  background-color: #ff5555;
+  transform: scale(1.07);
+  box-shadow: 0.1rem 0.1rem 4rem rgba(0, 0, 0, 0.25);
+  animation: none;
 }
 
 .attack-btn:active {
